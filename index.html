@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="Action.js"></script>
+	<script type="text/javascript" src="Hand.js"></script>
+	<script type="text/javascript" src="Watch.js"></script>
+	<script type="text/javascript" src="HandController.js"></script>
+	<script type="text/javascript" src="HandLockController.js"></script>
+	<script type="text/javascript" src="Task.js"></script>
+	<script type="text/javascript" src="TaskController.js"></script>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="300"></canvas>
+	<button onclick="addTask1();">Task1</button>
+	<script type="text/javascript">
+		var watch = new Watch({
+			canvas: document.getElementById('canvas'),
+		}).addHands([
+				new Hand('hour', 150,150, 50, 0),
+				new Hand('min', 150,150,100,60),
+				new Hand('sec', 150,150,150,120)
+			]);
+
+		watch.start();
+
+		function addTask1(){
+			watch.addTask(new Task({
+				requiredHands: ['min'],
+				onStart: function(hcs, callback){
+					console.log(hcs)
+					for(let i=0; i<9;i++){
+						hcs.min.pushAction(new Action(0,Math.floor(Math.random()*360),10,5))
+					}
+					hcs.min.pushAction(new Action(0,Math.floor(Math.random()*360),10,5).setCallback(callback))					
+				}
+			}))
+		}
+	</script>
+</body>
+</html>

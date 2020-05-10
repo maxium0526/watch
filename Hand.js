@@ -53,17 +53,26 @@ class SingleLineHand extends Hand{
 class ImageHand extends Hand{
 	constructor(config){
 		super(config);
-		this.image = new Image(this.width, this.length);
-		this.image.src = config.image_src;
+		this.image = new Image(this.length, this.width);
+		this.image.src = config.image.src;
+		this.handcenter = {};
+		this.handcenter.x = (config.image.handCenterX * this.length / config.image.width);
+		this.handcenter.y = (config.image.handCenterY * this.width / config.image.height);
+
+		this.dgOffset = Math.sqrt(Math.pow(this.handcenter.x, 2) + Math.pow(this.handcenter.y, 2));
+		this.gamma = Math.atan(this.handcenter.y / this.handcenter.x) * 180 / Math.PI;
 	}
 	draw(ctx){
-		let offsetX = this.x-Math.cos(this.degree * Math.PI / 180) * (this.width / 2);
-		let offsetY = this.y+Math.sin(this.degree * Math.PI / 180) * (this.width / 2);
+		// let offsetX = this.x-Math.sin(this.degree * Math.PI / 180) * (this.width / 2);
+		// let offsetY = this.y-Math.cos(this.degree * Math.PI / 180) * (this.width / 2);
+		let offsetX = this.x-Math.cos((this.degree-this.gamma) * Math.PI / 180) * this.dgOffset;
+		let offsetY = this.y+Math.sin((this.degree-this.gamma) * Math.PI / 180) * this.dgOffset;
 		ctx.translate(offsetX, offsetY);
 		ctx.rotate(-this.degree * Math.PI / 180);
-		ctx.drawImage(this.image, 0,0, this.width, this.length);
+		ctx.drawImage(this.image, 0,0, this.length, this.width);
 		ctx.rotate(this.degree * Math.PI / 180);
 		ctx.translate(-offsetX, -offsetY);
 
 	}
 }
+

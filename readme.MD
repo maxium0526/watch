@@ -11,3 +11,8 @@ No dependency.
 #### Demo
 
 [Demo](https://maxium0526.github.io/watch/index.html)
+
+#### Credit
+
+[Source of clock hand images](http://www.anniemation.com/textures/gears-and-bits/gears-and-bits.html)
+

@@ -17,12 +17,20 @@
 		var watch = new Watch({
 			canvas: document.getElementById('canvas'),
 		}).addHands([
-				new Hand({
+				new ImageHand({
 					name: 'hour',
 					x: 150,
 					y: 150,
-					length: 70,
+					length: 89,
 					degree: 0,
+					width: 20,
+					image:{
+						src: 'img/ch1.png',
+						handCenterX: 43,
+						handCenterY: 45,
+						width: 396,
+						height: 89,
+					}
 				}),
 				new ImageHand({
 					name: 'min',
@@ -31,16 +39,28 @@
 					length: 120,
 					degree: 0,
 					width: 20,
-					image_src: 'img/test.png'
+					image:{
+						src: 'img/ch2.png',
+						handCenterX: 42,
+						handCenterY: 49,
+						width: 578,
+						height: 96,
+					},
 				}),
 				new ImageHand({
 					name: 'sec',
 					x: 150,
 					y: 150,
-					length: 150,
+					length: 114,
 					degree: 0,
 					width: 20,
-					image_src: 'img/test.png'
+					image:{
+						src: 'img/ch3.png',
+						handCenterX: 43,
+						handCenterY: 44,
+						width: 485,
+						height: 85,
+					},
 				}),
 			]);
 

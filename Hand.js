@@ -6,15 +6,17 @@ class Hand{
 		this.length = config.length;
 		this.degree = (config.degree+360) % 360;//
 		this.color = config.color || '#000000';
+		this.width = config.width || 1;
 	}
 	rotate(degree){
 		this.degree += degree%360;
 		this.degree = (this.degree+360) % 360;//
 	}
 	draw(ctx){
-		var xp = this.x + Math.cos(this.degree * Math.PI / 180) * this.length;
-		var yp = this.y - Math.sin(this.degree * Math.PI / 180) * this.length;
+		let xp = this.x + Math.cos(this.degree * Math.PI / 180) * this.length;
+		let yp = this.y - Math.sin(this.degree * Math.PI / 180) * this.length;
 		ctx.color = this.color;
+		ctx.lineWidth = this.width;
 		ctx.beginPath();
 		ctx.moveTo(this.x, this.y);
 		ctx.lineTo(xp, yp);
@@ -33,7 +35,6 @@ class SingleLineHand extends Hand{
 			this.length.head = 0;
 			this.length.body = config.length;
 		}
-		this.width = config.width;
 	}
 	draw(ctx){
 		let xbp = this.x + Math.cos(this.degree * Math.PI / 180) * this.length.body;

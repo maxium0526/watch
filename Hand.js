@@ -76,3 +76,65 @@ class ImageHand extends Hand{
 	}
 }
 
+class HandFactory{
+	static get(name){
+		switch(name){
+			case 'ex1-1':
+				return new ImageHand({
+						name: 'hour',
+						x: 150,
+						y: 150,
+						length: 89,
+						degree: 0,
+						width: 20,
+						image:{
+							src: 'img/ch1.png',
+							handCenterX: 43,
+							handCenterY: 45,
+							width: 396,
+							height: 89,
+						}
+					});
+			case 'ex1-2':
+				return new ImageHand({
+						name: 'min',
+						x: 150,
+						y: 150,
+						length: 120,
+						degree: 0,
+						width: 20,
+						image:{
+							src: 'img/ch2.png',
+							handCenterX: 42,
+							handCenterY: 49,
+							width: 578,
+							height: 96,
+						},
+					});
+			case 'ex1-3':
+				return new ImageHand({
+						name: 'sec',
+						x: 150,
+						y: 150,
+						length: 114,
+						degree: 0,
+						width: 20,
+						image:{
+							src: 'img/ch3.png',
+							handCenterX: 43,
+							handCenterY: 44,
+							width: 485,
+							height: 85,
+						},
+					});
+			default:
+				return null;
+		}
+	}
+	static test(n){
+		switch(n){
+			case 'a': return true;
+		}
+		return false;
+	}
+}

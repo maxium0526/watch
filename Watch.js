@@ -63,3 +63,15 @@ class Watch{
 	}
 	
 }
+
+class WatchFactory{
+	constructor(){}
+	static get(name, canvas){
+		switch(name){
+			case 'ex1':
+				return new Watch({
+					canvas: canvas,
+				}).addHands([HandFactory.get('ex1-1'),HandFactory.get('ex1-2'),HandFactory.get('ex1-3')]);
+		}
+	}
+}

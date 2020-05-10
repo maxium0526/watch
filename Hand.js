@@ -49,3 +49,21 @@ class SingleLineHand extends Hand{
 		ctx.stroke();
 	}
 }
+
+class ImageHand extends Hand{
+	constructor(config){
+		super(config);
+		this.image = new Image(this.width, this.length);
+		this.image.src = config.image_src;
+	}
+	draw(ctx){
+		let offsetX = this.x-Math.cos(this.degree * Math.PI / 180) * (this.width / 2);
+		let offsetY = this.y+Math.sin(this.degree * Math.PI / 180) * (this.width / 2);
+		ctx.translate(offsetX, offsetY);
+		ctx.rotate(-this.degree * Math.PI / 180);
+		ctx.drawImage(this.image, 0,0, this.width, this.length);
+		ctx.rotate(this.degree * Math.PI / 180);
+		ctx.translate(-offsetX, -offsetY);
+
+	}
+}

@@ -32,7 +32,6 @@ class TaskController{
 			}
 		} else {
 			if(this.watch.handLockController.check(this.defaultTask.getRequiredHands())){
-				console.log('asd')
 				this.watch.handLockController.lock(this.defaultTask.getRequiredHands());
 				this.isRunningDefaultTask = true;
 				this.defaultTask.start(this.watch.getHandControllers(this.defaultTask.getRequiredHands()), function(){

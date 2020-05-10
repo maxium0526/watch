@@ -17,9 +17,27 @@
 		var watch = new Watch({
 			canvas: document.getElementById('canvas'),
 		}).addHands([
-				new Hand('hour', 150,150, 50, 0),
-				new Hand('min', 150,150,100,60),
-				new Hand('sec', 150,150,150,120)
+				new Hand({
+					name: 'hour',
+					x: 150,
+					y: 150,
+					length: 70,
+					degree: 0,
+				}),
+				new Hand({
+					name: 'min',
+					x: 150,
+					y: 150,
+					length: 120,
+					degree: 0,
+				}),
+				new Hand({
+					name: 'sec',
+					x: 150,
+					y: 150,
+					length: 150,
+					degree: 0,
+				}),
 			]);
 
 		watch.start();

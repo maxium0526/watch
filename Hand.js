@@ -1,11 +1,11 @@
 class Hand{
-	constructor(name, x, y, length, degree){
-		this.name = name;
-		this.x = x;
-		this.y = y;
-		this.length = length;
-		this.degree = (degree+360) % 360;//
-		this.color = "#000000";
+	constructor(config){
+		this.name = config.name;
+		this.x = config.x;
+		this.y = config.y;
+		this.length = config.length;
+		this.degree = (config.degree+360) % 360;//
+		this.color = config.color;
 	}
 	rotate(degree){
 		this.degree += degree%360;

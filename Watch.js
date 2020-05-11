@@ -58,7 +58,7 @@ class Watch{
 	render(){
 		this.ctx.clearRect(0,0, canvas.width, canvas.height);
 		for(let hand of this.hands){
-			hand.draw(this.ctx);
+			hand.render(this.ctx);
 		}
 	}
 	

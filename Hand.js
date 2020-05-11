@@ -12,7 +12,7 @@ class Hand{
 		this.degree += degree%360;
 		this.degree = (this.degree+360) % 360;//
 	}
-	draw(ctx){
+	render(ctx){
 		let xp = this.x + Math.cos(this.degree * Math.PI / 180) * this.length;
 		let yp = this.y - Math.sin(this.degree * Math.PI / 180) * this.length;
 		ctx.color = this.color;
@@ -36,7 +36,7 @@ class SingleLineHand extends Hand{
 			this.length.body = config.length;
 		}
 	}
-	draw(ctx){
+	render(ctx){
 		let xbp = this.x + Math.cos(this.degree * Math.PI / 180) * this.length.body;
 		let ybp = this.y - Math.sin(this.degree * Math.PI / 180) * this.length.body;
 		let xhp = this.x - Math.cos(this.degree * Math.PI / 180) * this.length.head;
@@ -62,7 +62,7 @@ class ImageHand extends Hand{
 		this.dgOffset = Math.sqrt(Math.pow(this.handcenter.x, 2) + Math.pow(this.handcenter.y, 2));
 		this.gamma = Math.atan(this.handcenter.y / this.handcenter.x) * 180 / Math.PI;
 	}
-	draw(ctx){
+	render(ctx){
 		// let offsetX = this.x-Math.sin(this.degree * Math.PI / 180) * (this.width / 2);
 		// let offsetY = this.y-Math.cos(this.degree * Math.PI / 180) * (this.width / 2);
 		let offsetX = this.x-Math.cos((this.degree-this.gamma) * Math.PI / 180) * this.dgOffset;

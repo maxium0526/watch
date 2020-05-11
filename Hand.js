@@ -12,13 +12,15 @@ class Hand{
 		this.degree += degree%360;
 		this.degree = (this.degree+360) % 360;//
 	}
-	render(ctx){
-		let xp = this.x + Math.cos(this.degree * Math.PI / 180) * this.length;
-		let yp = this.y - Math.sin(this.degree * Math.PI / 180) * this.length;
+	render(ctx, offsetX, offsetY){
+		let x = this.x + offsetX;
+		let y = this.y + offsetY;
+		let xp = x + Math.cos(this.degree * Math.PI / 180) * this.length;
+		let yp = y - Math.sin(this.degree * Math.PI / 180) * this.length;
 		ctx.color = this.color;
 		ctx.lineWidth = this.width;
 		ctx.beginPath();
-		ctx.moveTo(this.x, this.y);
+		ctx.moveTo(x, y);
 		ctx.lineTo(xp, yp);
 		ctx.stroke();
 	}
@@ -36,11 +38,13 @@ class SingleLineHand extends Hand{
 			this.length.body = config.length;
 		}
 	}
-	render(ctx){
-		let xbp = this.x + Math.cos(this.degree * Math.PI / 180) * this.length.body;
-		let ybp = this.y - Math.sin(this.degree * Math.PI / 180) * this.length.body;
-		let xhp = this.x - Math.cos(this.degree * Math.PI / 180) * this.length.head;
-		let yhp = this.y + Math.sin(this.degree * Math.PI / 180) * this.length.head;
+	render(ctx, offsetX, offsetY){
+		let x = this.x + offsetX;
+		let y = this.y + offsetY;
+		let xbp = x + Math.cos(this.degree * Math.PI / 180) * this.length.body;
+		let ybp = y - Math.sin(this.degree * Math.PI / 180) * this.length.body;
+		let xhp = x - Math.cos(this.degree * Math.PI / 180) * this.length.head;
+		let yhp = y + Math.sin(this.degree * Math.PI / 180) * this.length.head;
 		ctx.color = this.color;
 		ctx.lineWidth = this.width;
 		ctx.beginPath();
@@ -62,16 +66,18 @@ class ImageHand extends Hand{
 		this.dgOffset = Math.sqrt(Math.pow(this.handcenter.x, 2) + Math.pow(this.handcenter.y, 2));
 		this.gamma = Math.atan(this.handcenter.y / this.handcenter.x) * 180 / Math.PI;
 	}
-	render(ctx){
+	render(ctx, offsetX, offsetY){
 		// let offsetX = this.x-Math.sin(this.degree * Math.PI / 180) * (this.width / 2);
 		// let offsetY = this.y-Math.cos(this.degree * Math.PI / 180) * (this.width / 2);
-		let offsetX = this.x-Math.cos((this.degree-this.gamma) * Math.PI / 180) * this.dgOffset;
-		let offsetY = this.y+Math.sin((this.degree-this.gamma) * Math.PI / 180) * this.dgOffset;
-		ctx.translate(offsetX, offsetY);
+		let x = this.x + offsetX;
+		let y = this.y + offsetY;
+		let gOffsetX = x-Math.cos((this.degree-this.gamma) * Math.PI / 180) * this.dgOffset;
+		let gOffsetY = y+Math.sin((this.degree-this.gamma) * Math.PI / 180) * this.dgOffset;
+		ctx.translate(gOffsetX, gOffsetY);
 		ctx.rotate(-this.degree * Math.PI / 180);
 		ctx.drawImage(this.image, 0,0, this.length, this.width);
 		ctx.rotate(this.degree * Math.PI / 180);
-		ctx.translate(-offsetX, -offsetY);
+		ctx.translate(-gOffsetX, -gOffsetY);
 
 	}
 }

@@ -2,8 +2,8 @@ class Watch{
 	constructor(config){
 		this.canvas = config.canvas;
 		this.ctx = this.canvas.getContext('2d');
-		this.x = config.x;
-		this.y = config.y;
+		this.x = config.x || 0;
+		this.y = config.y || 0;
 		this.width = config.width;
 		this.height = config.height;
 
@@ -58,7 +58,7 @@ class Watch{
 	render(){
 		this.ctx.clearRect(0,0, canvas.width, canvas.height);
 		for(let hand of this.hands){
-			hand.render(this.ctx);
+			hand.render(this.ctx, this.x, this.y);
 		}
 	}
 	

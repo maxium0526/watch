@@ -88,8 +88,8 @@ class HandFactory{
 			case 'ex1-1':
 				return new ImageHand({
 						name: 'hour',
-						x: 150,
-						y: 150,
+						x: 118,
+						y: 116,
 						length: 89,
 						degree: 0,
 						width: 20,
@@ -104,8 +104,8 @@ class HandFactory{
 			case 'ex1-2':
 				return new ImageHand({
 						name: 'min',
-						x: 150,
-						y: 150,
+						x: 118,
+						y: 116,
 						length: 120,
 						degree: 0,
 						width: 20,
@@ -120,8 +120,8 @@ class HandFactory{
 			case 'ex1-3':
 				return new ImageHand({
 						name: 'sec',
-						x: 150,
-						y: 150,
+						x: 118,
+						y: 116,
 						length: 114,
 						degree: 0,
 						width: 20,

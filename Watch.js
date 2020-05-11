@@ -6,6 +6,11 @@ class Watch{
 		this.y = config.y || 0;
 		this.width = config.width;
 		this.height = config.height;
+		this.bgImage = config.bgImage || null;
+		if(this.bgImage){
+			this.bgImage.image = new Image(this.width, this.height);
+			this.bgImage.image.src = this.bgImage.src;
+		}
 
 		this.hands = [];
 		this.handControllers = [];
@@ -57,6 +62,7 @@ class Watch{
 
 	render(){
 		this.ctx.clearRect(0,0, canvas.width, canvas.height);
+		if(this.bgImage) this.ctx.drawImage(this.bgImage.image, this.x, this.y, this.width, this.height);
 		for(let hand of this.hands){
 			hand.render(this.ctx, this.x, this.y);
 		}
@@ -71,6 +77,13 @@ class WatchFactory{
 			case 'ex1':
 				return new Watch({
 					canvas: canvas,
+					x:0,
+					y:0,
+					width: 234,
+					height: 233,
+					bgImage:{
+						src: 'img/dial.png'
+					},
 				}).addHands([HandFactory.get('ex1-1'),HandFactory.get('ex1-2'),HandFactory.get('ex1-3')]);
 		}
 	}

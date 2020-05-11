@@ -131,10 +131,4 @@ class HandFactory{
 				return null;
 		}
 	}
-	static test(n){
-		switch(n){
-			case 'a': return true;
-		}
-		return false;
-	}
 }

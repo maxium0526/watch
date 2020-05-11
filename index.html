@@ -24,7 +24,6 @@
 			watch.addTask(new Task({
 				requiredHands: ['min'],
 				onStart: function(hcs, callback){
-					console.log(hcs)
 					for(let i=0; i<9;i++){
 						hcs.min.pushAction(new Action(0,Math.floor(Math.random()*360),10,5))
 					}

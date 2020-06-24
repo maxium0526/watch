@@ -14,6 +14,7 @@
 	<canvas id="canvas" width="300" height="300"></canvas>
 	<br><br><br>
 	<button onclick="addTask1();">Task1</button>
+	<button onclick="addTask2();">Task2</button>
 	<script type="text/javascript">
 
 		var watch = WatchFactory.get('ex1', document.getElementById('canvas'));
@@ -28,6 +29,54 @@
 						hcs.min.pushAction(new Action(0,Math.floor(Math.random()*360),10,5))
 					}
 					hcs.min.pushAction(new Action(0,Math.floor(Math.random()*360),10,5).setCallback(callback))					
+				}
+			}))
+		}
+		function addTask2(){
+			watch.addTask(new Task({
+				requiredHands: ['hour', 'min', 'sec'],
+				onStart: function(hcs, callback){
+					let t = 0;
+					hcs.hour.clearActions();
+					hcs.min.clearActions();
+					hcs.sec.clearActions();
+
+					hcs.hour.pushAction(new Action(0,90,100,1));
+					hcs.min.pushAction(new Action(0,90,100,1));
+					hcs.sec.pushAction(new Action(0,90,100,1));
+
+					setTimeout(function(){
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+						hcs.hour.pushAction(new Action(1,-10,50,1));
+
+						hcs.min.pushAction(new Action(1,10,50,1));
+						hcs.min.pushAction(new Action(1,10,50,1));
+						hcs.min.pushAction(new Action(1,10,50,1));
+						hcs.min.pushAction(new Action(1,10,50,1));
+						hcs.min.pushAction(new Action(1,10,50,1));
+						hcs.min.pushAction(new Action(1,10,50,1));
+						hcs.min.pushAction(new Action(1,10,50,1));
+						hcs.min.pushAction(new Action(1,10,50,1));
+						hcs.min.pushAction(new Action(1,10,50,1).setCallback(function(){
+							hcs.sec.pushAction(new Action(1,-20,1,1));
+							hcs.sec.pushAction(new Action(1,-40,1,2));
+							hcs.sec.pushAction(new Action(1,-60,1,3));
+							hcs.sec.pushAction(new Action(1,-80,1,4));
+							hcs.sec.pushAction(new Action(1,-100,1,5));
+							hcs.sec.pushAction(new Action(1,-120,1,6));
+							hcs.sec.pushAction(new Action(1,-140,1,7));
+							hcs.sec.pushAction(new Action(1,-160,1,8).setCallback(callback));
+						}));
+					},5000)
+
+					
 				}
 			}))
 		}

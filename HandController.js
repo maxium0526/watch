@@ -26,7 +26,7 @@ class HandController{
 	
 	clearActions(){
 		this.currentAction = null;
-		while(this.action.length>0){
+		while(this.actions.length>0){
 			this.actions.pop();
 		}
 	}
